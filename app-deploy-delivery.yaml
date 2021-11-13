@@ -1,0 +1,15 @@
+#Continuous Delivery Pipeline Template for Staging Branch
+
+
+steps:
+# Replace CLOUDSDK_COMPUTE_ZONE and CLOUDSDK_CONTAINER_CLUSTER with your 
+# zone and Anthos Cluster name. 
+- name: 'gcr.io/cloud-builders/kubectl'
+  id: Deploy
+  args:
+  - 'apply'
+  - '-f'
+  - 'config/staging/kubernetes.yaml'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-southeast1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=anthos-cluster'

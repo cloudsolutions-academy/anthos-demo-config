@@ -1,0 +1,40 @@
+# Sample Kubernetes Deployment Template
+# The COMMIT SHA variable below would be replaced by the commited build image
+# as part of CD process.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoapp
+  labels:
+    app: demoapp
+    businessunit: software-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demoapp
+  template:
+    metadata:
+      labels:
+        app: demoapp
+        businessunit: software-demo
+    spec:
+      containers:
+      - name: demoapp
+        image: gcr.io/anthos-book-322415/demoapp:COMMIT_SHA
+        ports:
+        - containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: demoapp
+spec:
+  selector:
+    app: demoapp
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
