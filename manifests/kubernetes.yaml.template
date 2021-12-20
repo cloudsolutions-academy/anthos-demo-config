@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: demoapp
-        image: gcr.io/anthos-book-322415/demoapp:COMMIT_SHA
+        image: gcr.io/GOOGLE_CLOUD_PROJECT/demoapp:COMMIT_SHA
         ports:
         - containerPort: 8080
 ---
